@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}
+update an article
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/editormd/examples/css/style.css" />
+<link rel="stylesheet" href="/static/editormd/css/editormd.min.css" />
+{% endblock css %}
+
+{% block js %}
+<script src="/static/editormd/examples/js/jquery.min.js"></script>
+<script src="/static/editormd/lib/marked.min.js"></script>
+<script src="/static/editormd/lib/prettify.min.js"></script>
+<script src="/static/editormd/lib/raphael.min.js"></script>
+<script src="/static/editormd/lib/underscore.min.js"></script>
+<script src="/static/editormd/lib/sequence-diagram.min.js"></script>
+<script src="/static/editormd/lib/flowchart.min.js"></script>
+<script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
+<script src="/static/editormd/editormd.min.js"></script>
+<script type="text/javascript">
+    var editor;
+    $(function() {
+        editor = editormd("editormd", {
+            path : "/static/editormd/lib/",
+            width   : "90%",
+            height  : 640,
+            syncScrolling : "single",
+            tocm    : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+            imageUpload : true,
+            imageFormats : ["jpg","jpeg","gif","png","bmp","webp"],
+            imageUploadURL : "{% url 'news:upload' %}",
+
+        });
+    });
+</script>
+{% endblock js %}
+
+{% block content %}
+
+
+
+<form action="{% url 'news:edit_action' %}" method="post">
+
+    {% csrf_token %}
+
+    <input type="hidden" name="pk" value="{{ article.pk | default:'0' }}" />
+    <input type="hidden"  name="author" value="{{ user }}"/>
+    <div class="form-group">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="Select1"></label>
+                    <select class="form-control" id="Select1" name="column">
+                        {% for column in  columns %}
+                        {% if column.name == article.column.name %}
+                        <option value="{{ column.name }}" selected="selected">{{ column.name }}</option>
+                        {% else %}
+                        <option value="{{ column.name }}">{{ column.name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="title"></label>
+                    <input id="title" type="text" class="form-control" placeholder="Title" name="title" value="{{ article.title }}"/>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="editormd" >
+        <textarea style="display:none;" name="content">{{ article.content }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">提交</button>
+</form>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+

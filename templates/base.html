@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+    <title>
+        {% block title %}
+        nswiki title block
+        {% endblock title %}
+        - nswiki
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+    .selector-for-some-widget {
+    box-sizing: content-box;
+    }
+    </style>
+    {% block css %}{% endblock css %}
+
+</head>
+
+<body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+{% block js %}{% endblock js %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'news:index' %}">主页<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">管理</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'news:edit_page' 0 %}">创建</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    栏目
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for column in  columns %}
+                    <a class="dropdown-item" href="{{ column.get_absolute_url }}">{{ column.name }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            {%  if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'news:logout' %}">注销</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'news:user_page' user.username %}">空间</a>
+            </li>
+            {% else %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    登录
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+
+                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">登录</a>
+
+                    <a class="dropdown-item" href="#">注册</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+
+    </div>
+</nav>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">登录</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'news:auth' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class="col-form-label">username:</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">password:</label>
+                        <input type="password" class="form-control" id="password"  name="password">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% block content %}
+<h1>nswiki content block</h1>
+{% endblock content %}
+
+<footer class="footer bg-light text-center">
+    <a href="https://www.github.com/RyQcan/nswiki" target="_blank">GitHub</a>
+    <a href="{% url 'news:about' %}" target="_blank">About</a>
+    <p>
+        nswiki Copyright &copy; 2017
+        Powered by <a href="http://www.hitwh.top" target="_blank">RyQcan</a> All Rights Reserved.
+    </p>
+</footer>
+
+
+
+</body>
+</html>
