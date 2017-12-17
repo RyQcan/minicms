@@ -1,10 +1,7 @@
-import django
 from MySQLdb import connect
-from django.conf import settings
-import manage
-from minicms import settings as myappsettings
 
-DATABASES = myappsettings.DATABASES
+import manage
+from minicms.settings import DATABASES
 
 dbname = DATABASES['default']['NAME']
 
@@ -17,11 +14,11 @@ conn = connect(
 
 cs = conn.cursor()
 try:
-    cs.execute(r"USE %s" % dbname)
-except Exception as e:
-    cs.execute(r"CREATE DATABASE IF NOT EXISTS `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci" % dbname)
+    cs.execute(r"CREATE DATABASE `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci" % dbname)
     manage.main(["manage.py", "makemigrations"])
     manage.main(["manage.py", "migrate"])
+except Exception as e:
+    print(e)
 
     # from django.core.management import call_command
     #
