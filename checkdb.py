@@ -26,3 +26,5 @@ try:
     manage.main(["manage.py", "migrate"])
 except Exception as e:
     print(e)
+finally:
+    manage.main(["manage.py", "runserver", "0.0.0.0:8000"])

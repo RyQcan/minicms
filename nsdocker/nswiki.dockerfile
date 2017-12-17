@@ -15,6 +15,6 @@ ONBUILD RUN git pull
 
 EXPOSE 8000
 
-CMD python checkdb.py && python manage.py runserver 0.0.0.0:8000
+#CMD python checkdb.py && python manage.py runserver 0.0.0.0:8000
 
-#CMD ["python","manage.py","runserver","0.0.0.0:8000"]
+CMD ["python","checkdb.py"]
