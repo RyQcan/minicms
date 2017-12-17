@@ -20,8 +20,8 @@ try:
     cs.execute(r"USE %s" % dbname)
 except Exception as e:
     cs.execute(r"CREATE DATABASE IF NOT EXISTS `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci" % dbname)
-    manage.main(["makemigrations"])
-    manage.main(["migrate"])
+    manage.main(["manage.py", "makemigrations"])
+    manage.main(["manage.py", "migrate"])
 
     # from django.core.management import call_command
     #
