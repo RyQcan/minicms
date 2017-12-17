@@ -6,7 +6,6 @@ services:
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: "13723926068"
-      MYSQL_DATABASE: "djangodb"
     ports:
       - "3306:3306"
     volumes:
@@ -16,6 +15,12 @@ services:
       context: .
       dockerfile: nswiki.dockerfile
     restart: on-failure
+    environment:
+      MYSQL_HOST: "mysql"
+      MYSQL_PORT: "3306"
+      MYSQL_DB: "djangodb"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "13723926068"
     depends_on:
       - mysql
     ports:

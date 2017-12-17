@@ -3,17 +3,15 @@ from MySQLdb import connect
 import manage
 from minicms.settings import DATABASES
 
-dbname = DATABASES['default']['NAME']
-
-# conn = None
+dbinfo = DATABASES['default']
+dbname = dbinfo['NAME']
 
 while True:
     try:
         conn = connect(
-            host=DATABASES['default']['HOST'],
-            # host="nist.lee-service.com",
-            user=DATABASES['default']['USER'],
-            password=DATABASES['default']['PASSWORD']
+            host=dbinfo['HOST'],
+            user=dbinfo['USER'],
+            password=dbinfo['PASSWORD']
         )
         break
     except Exception as e:
