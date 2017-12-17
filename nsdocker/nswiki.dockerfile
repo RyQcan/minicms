@@ -19,6 +19,4 @@ ONBUILD RUN git pull
 
 EXPOSE $EXP_PORT
 
-#CMD python checkdb.py && python manage.py runserver 0.0.0.0:8000
-
 CMD ["python","launch.py"]
