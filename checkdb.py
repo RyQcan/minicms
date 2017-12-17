@@ -1,3 +1,4 @@
+import django
 from MySQLdb import connect
 from django.conf import settings
 
@@ -23,5 +24,6 @@ except Exception as e:
 
     if not settings.configured:
         settings.configure(myappsettings)
+    django.setup()
     call_command("makemigrations", interactive=False)
     call_command("migrate", interactive=False)
