@@ -7,10 +7,10 @@ ENV LISTEN_PORT=$EXP_PORT
 WORKDIR /app
 
 ONBUILD RUN apt -y update \
-        && apt -y upgrade \
-        && pip3 install -U pip
+        && apt -y upgrade
 
-RUN git clone https://github.com/RyQcan/minicms.git
+RUN pip3 install -U pip \
+    && git clone https://github.com/RyQcan/minicms.git
 
 WORKDIR /app/minicms
 
