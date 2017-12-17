@@ -5,12 +5,15 @@ from minicms.settings import DATABASES
 
 dbname = DATABASES['default']['NAME']
 
-conn = connect(
-    host=DATABASES['default']['HOST'],
-    # host="nist.lee-service.com",
-    user=DATABASES['default']['USER'],
-    password=DATABASES['default']['PASSWORD']
-)
+conn = None
+
+while not conn:
+    conn = connect(
+        host=DATABASES['default']['HOST'],
+        # host="nist.lee-service.com",
+        user=DATABASES['default']['USER'],
+        password=DATABASES['default']['PASSWORD']
+    )
 
 cs = conn.cursor()
 try:
