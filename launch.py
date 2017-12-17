@@ -1,6 +1,7 @@
 import logging
 import subprocess
 import os
+import time
 from MySQLdb import connect
 
 import manage
@@ -20,6 +21,7 @@ try:
             break
         except Exception as e:
             logger.error(e)
+            time.sleep(2)
 
     try:
         cs = conn.cursor()
