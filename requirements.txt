@@ -1,3 +1,4 @@
 django==1.11
 mysqlclient
 Pillow
+django_extensions

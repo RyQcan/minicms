@@ -1,5 +1,9 @@
 FROM python
 
+ARG EXP_PORT=8000
+
+ENV LISTEN_PORT=$EXP_PORT
+
 WORKDIR /app
 
 RUN apt -y update \
@@ -13,7 +17,7 @@ RUN pip3 install -r requirements.txt
 
 ONBUILD RUN git pull
 
-EXPOSE 8000
+EXPOSE $EXP_PORT
 
 #CMD python checkdb.py && python manage.py runserver 0.0.0.0:8000
 
