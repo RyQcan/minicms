@@ -12,9 +12,8 @@ WORKDIR /app/minicms
 
 ONBUILD RUN git pull
 
-RUN python checkdb.py
-
-RUN python manage.py makemigrations \
+RUN python checkdb.py \
+    && python manage.py makemigrations \
     && python manage.py migrate
 
 EXPOSE 8000
