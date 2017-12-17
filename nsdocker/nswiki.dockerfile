@@ -5,17 +5,16 @@ WORKDIR /app
 RUN apt -y update \
     && apt -y upgrade \
     && git clone https://github.com/RyQcan/minicms.git \
-    && pip3 install -U pip \
-    && pip3 install django==1.11 mysqlclient Pillow
+    && pip3 install -U pip
 
 WORKDIR /app/minicms
 
-ONBUILD RUN git pull
+RUN pip3 install -r requirements.txt
 
-RUN python checkdb.py \
-    && python manage.py makemigrations \
-    && python manage.py migrate
+ONBUILD RUN git pull
 
 EXPOSE 8000
 
-CMD ["python","manage.py","runserver","0.0.0.0:8000"]
+CMD python checkdb.py && python manage.py runserver 0.0.0.0:8000
+
+#CMD ["python","manage.py","runserver","0.0.0.0:8000"]

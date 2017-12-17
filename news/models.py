@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.db import models
 from django.core.urlresolvers import reverse
+from django.db import models
+
 
 class Column(models.Model):
     name = models.CharField('栏目名称', max_length=256)
@@ -10,6 +11,7 @@ class Column(models.Model):
 
     def get_absolute_url(self):
         return reverse('news:column', args=(self.slug,))
+
     def __str__(self):
         return self.name
 
@@ -22,7 +24,6 @@ class Column(models.Model):
 class Article(models.Model):
     column = models.ForeignKey(Column, default='', null=False, verbose_name='归属栏目')
     author = models.ForeignKey('auth.User', blank=True, null=True, verbose_name='作者')
-
 
     title = models.CharField('标题', max_length=256)
     content = models.TextField()
@@ -41,6 +42,7 @@ class Article(models.Model):
         verbose_name = '文章'
         verbose_name_plural = '文章'
 
+
 class IMG(models.Model):
-    name=models.CharField(max_length=255)
-    img =models.ImageField(upload_to='upload')
+    name = models.CharField(max_length=255)
+    img = models.ImageField(upload_to='upload')
