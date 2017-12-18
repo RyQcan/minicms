@@ -1,16 +1,17 @@
 import logging
-import subprocess
 import os
+import subprocess
 import time
+
 from MySQLdb import connect
 
 import manage
 from minicms.settings import DATABASES
 
-dbinfo = DATABASES['default']
-dbname = dbinfo['NAME']
 logger = logging.getLogger(__name__)
 try:
+    dbinfo = DATABASES['default']
+    dbname = dbinfo['NAME']
     while True:
         try:
             conn = connect(
@@ -22,13 +23,11 @@ try:
         except Exception as e:
             logger.error(e)
             time.sleep(2)
-
     try:
         cs = conn.cursor()
         cs.execute(r"CREATE DATABASE `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci" % dbname)
     except Exception as e:
         logger.error(e)
-
     if subprocess.run(["python", "manage.py", "sqldiff", "-a"]).returncode != 0:
         manage.main(["manage.py", "makemigrations", "--check"])
         manage.main(["manage.py", "migrate"])

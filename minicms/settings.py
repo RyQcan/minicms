@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'news',
-
 ]
 
 MIDDLEWARE = [
