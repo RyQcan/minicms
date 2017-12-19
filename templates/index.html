@@ -52,14 +52,16 @@
             </div>
             <div class="col-md-6 column">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="#" class="panel-title text-center">最新文章</a>
+                        {#                        <a href="#" class="list-group-item list-group-item-action active">最新文章</a>#}
+                    </div>
                     <div class="panel-body">
-                        <div class="panel-heading">
-                            <a href="#" class="list-group-item list-group-item-action active">最新文章</a>
-                        </div>
+
                         <div class="panel-body">
                             <div class="col-sm">
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action active">最新文章</a>
+                                    {#                                    {<a href="#" class="list-group-item list-group-item-action active">最新文章</a>#}
                                     {% for article in articles %}
                                         <a href="{{ article.get_absolute_url }}"
                                            class="list-group-item list-group-item-action">{{ article.title }}</a>
