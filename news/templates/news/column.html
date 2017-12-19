@@ -1,72 +1,83 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ column.title }}
+    {{ column.title }}
 {% endblock title %}
 
 {% block content %}
-<ul class="list-group">
-    <li class="list-group-item active">{{ column.name }}</li>
-    <li class="list-group-item">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    标题
-                </div>
-                <div class="col">
-                    作者
-                </div>
-                <div class="col">
-                    创建时间
-                </div>
-                <div class="col">
-                    更新时间
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item active">{{ column.name }}</li>
+                            <li class="list-group-item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            标题
+                                        </div>
+                                        <div class="col">
+                                            作者
+                                        </div>
+                                        <div class="col">
+                                            创建时间
+                                        </div>
+                                        <div class="col">
+                                            更新时间
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            {% for article in contacts %}
+                                <li class="list-group-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
+                                            </div>
+                                            <div class="col">
+                                                {{ article.pub_date }}
+                                            </div>
+                                            <div class="col">
+                                                {{ article.update_time }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </li>
-
-    {% for article in contacts %}
-    <li class="list-group-item">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-                </div>
-                <div class="col">
-                    <a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
-                </div>
-                <div class="col">
-                    {{ article.pub_date }}
-                </div>
-                <div class="col">
-                    {{ article.update_time }}
-                </div>
-            </div>
-        </div>
-
-    </li>
-    {% endfor %}
-</ul>
+    </div>
 
 
 
-<nav aria-label="...">
-    <ul class="pagination">
-        {% for page_number in contacts.paginator.page_range %}
-        {% ifequal page_number contacts.number %}
-        <li class="page-item active">
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% for page_number in contacts.paginator.page_range %}
+                {% ifequal page_number contacts.number %}
+                    <li class="page-item active">
       <span class="page-link">
-       {{page_number}}
+       {{ page_number }}
         <span class="sr-only"></span>
       </span>
-        </li>
-        {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{page_number}}">{{page_number}}</a></li>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
 
-        {% endifequal %}
-        {% endfor %}
-    </ul>
-</nav>
+                {% endifequal %}
+            {% endfor %}
+        </ul>
+    </nav>
 {% endblock content %}
