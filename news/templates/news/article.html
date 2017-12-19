@@ -47,38 +47,32 @@
 {% endblock js %}
 
 {% block content %}
-    <div class="col-md-6 column">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item active"><h5 class="mt-0">{{ article.title }}</h5></li>
-                        <li class="list-group-item">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{% url 'news:edit_page' article.pk %}">修改</a>
-                                    </div>
-                                    <div class="col">
-                                        栏目@<a href="{% url 'news:column' column.slug %}">{{ article.column }}</a>
-                                    </div>
-                                    <div class="col">
-                                        作者@<a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
-                                    </div>
-                                    <div class="col">
-                                        创建@{{ article.pub_date }}
-                                    </div>
-                                    <div class="col">
-                                        更新@{{ article.update_time }}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+
+    <ul class="list-group">
+        <li class="list-group-item active"><h5 class="mt-0">{{ article.title }}</h5></li>
+        <li class="list-group-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url 'news:edit_page' article.pk %}">修改</a>
+                    </div>
+                    <div class="col">
+                        栏目@<a href="{% url 'news:column' column.slug %}">{{ article.column }}</a>
+                    </div>
+                    <div class="col">
+                        作者@<a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
+                    </div>
+                    <div class="col">
+                        创建@{{ article.pub_date }}
+                    </div>
+                    <div class="col">
+                        更新@{{ article.update_time }}
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </li>
+    </ul>
+
 
     <div id="editormd_view">
         <textarea style="display:none;" name="content"> {{ article.content }}</textarea>

@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="./css/editormd.min.css" />
+<link rel="stylesheet" href="./css/editormd.min.css"/>
 <div id="editormd">
     <textarea style="display:none;">### Hello Editor.md !</textarea>
 </div>
 <script src="./js/jquery.min.js"></script>
 <script src="./editormd.min.js"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         var editor = editormd("editormd", {
-            path : "./lib/"
+            path: "./lib/"
 
         });
 
@@ -16,22 +16,21 @@
 </script>
 
 
-
 <!DOCTYPE html>
 <html lang="zh">
-    <head>
-        <meta charset="utf-8" />
-        <title>Simple example - Editor.md examples</title>
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="../css/editormd.css" />
-        <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
-    </head>
-    <body>
-        <div id="layout">
-            <header>
-                <h1>Simple example</h1>
-            </header>
-            <div id="test-editormd">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simple example - Editor.md examples</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../css/editormd.css"/>
+    <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+<div id="layout">
+    <header>
+        <h1>Simple example</h1>
+    </header>
+    <div id="test-editormd">
                 <textarea style="display:none;">
                     [TOC]
 
@@ -66,32 +65,32 @@
 &lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
 ```
 </textarea>
-            </div>
-        </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="../editormd.min.js"></script>
-        <script type="text/javascript">
-			var testEditor;
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="../editormd.min.js"></script>
+<script type="text/javascript">
+    var testEditor;
 
-            $(function() {
-                testEditor = editormd("test-editormd", {
-                    width   : "90%",
-                    height  : 640,
-                    syncScrolling : "single",
+    $(function () {
+        testEditor = editormd("test-editormd", {
+            width: "90%",
+            height: 640,
+            syncScrolling: "single",
 
-                    path    : "../lib/"
-                });
+            path: "../lib/"
+        });
 
-                /*
-                // or
-                testEditor = editormd({
-                    id      : "test-editormd",
-                    width   : "90%",
-                    height  : 640,
-                    path    : "../lib/"
-                });
-                */
-            });
-        </script>
-    </body>
+        /*
+         // or
+         testEditor = editormd({
+         id      : "test-editormd",
+         width   : "90%",
+         height  : 640,
+         path    : "../lib/"
+         });
+         */
+    });
+</script>
+</body>
 </html>

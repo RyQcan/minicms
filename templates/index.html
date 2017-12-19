@@ -3,57 +3,72 @@
 {% block title %} 首页 {% endblock title %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">通知</h4>
-                    <p class="card-text">{{ article.update_time }}</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                        More
-                    </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">通知</h4>
+                        <p class="card-text">{{ article.update_time }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModalLong">
+                            More
+                        </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ article.content }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                aria-label="Close">Ok
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                 {{ article.content }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Ok</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">栏目</a>
+                    {% for column in  columns %}
+                        <a href="{{ column.get_absolute_url }}"
+                           class="list-group-item list-group-item-action">{{ column.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6 column">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <div class="col-sm">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action active">最新文章</a>
+                                    {% for article in articles %}
+                                        <a href="{{ article.get_absolute_url }}"
+                                           class="list-group-item list-group-item-action">{{ article.title }}</a>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-        <div class="col-sm">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">栏目</a>
-                {% for column in  columns %}
-                <a href="{{ column.get_absolute_url }}" class="list-group-item list-group-item-action">{{ column.name }}</a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-sm">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">最新文章</a>
-                {% for article in articles %}
-                <a href="{{ article.get_absolute_url }}" class="list-group-item list-group-item-action">{{ article.title }}</a>
-                {% endfor %}
-            </div>
+
         </div>
     </div>
-</div>
 
 {% endblock content %}
