@@ -50,26 +50,28 @@
                 </li>
             {% endfor %}
         </ul>
-    </div>
-    
-
-
-
-    <nav aria-label="...">
-        <ul class="pagination">
-            {% for page_number in contacts.paginator.page_range %}
-                {% ifequal page_number contacts.number %}
-                    <li class="page-item active">
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% for page_number in contacts.paginator.page_range %}
+                    {% ifequal page_number contacts.number %}
+                        <li class="page-item active">
       <span class="page-link">
        {{ page_number }}
         <span class="sr-only"></span>
       </span>
-                    </li>
-                {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                        </li>
 
-                {% endifequal %}
-            {% endfor %}
-        </ul>
-    </nav>
+                    {% endifequal %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+
 {% endblock content %}
