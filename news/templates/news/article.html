@@ -1,79 +1,87 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ article.title }}
+    {{ article.title }}
 {% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/editormd/examples/css/style.css" />
-<link rel="stylesheet" href="/static/editormd/css/editormd.preview.css" />
-<style>
-    .editormd-html-preview {
-        width: 90%;
-        margin: 0 auto;
+    <link rel="stylesheet" href="/static/editormd/examples/css/style.css"/>
+    <link rel="stylesheet" href="/static/editormd/css/editormd.preview.css"/>
+    <style>
+        .editormd-html-preview {
+            width: 90%;
+            margin: 0 auto;
 
-    }
-</style>
+        }
+    </style>
 {% endblock css %}
 
 {% block js %}
-<script src="/static/editormd/examples/js/jquery.min.js"></script>
-<script src="/static/editormd/lib/marked.min.js"></script>
-<script src="/static/editormd/lib/prettify.min.js"></script>
-<script src="/static/editormd/lib/raphael.min.js"></script>
-<script src="/static/editormd/lib/underscore.min.js"></script>
-<script src="/static/editormd/lib/sequence-diagram.min.js"></script>
-<script src="/static/editormd/lib/flowchart.min.js"></script>
-<script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
-<script src="/static/editormd/editormd.js"></script>
-<script type="text/javascript">
-  $(function() {
-      var EditormdView;
+    <script src="/static/editormd/examples/js/jquery.min.js"></script>
+    <script src="/static/editormd/lib/marked.min.js"></script>
+    <script src="/static/editormd/lib/prettify.min.js"></script>
+    <script src="/static/editormd/lib/raphael.min.js"></script>
+    <script src="/static/editormd/lib/underscore.min.js"></script>
+    <script src="/static/editormd/lib/sequence-diagram.min.js"></script>
+    <script src="/static/editormd/lib/flowchart.min.js"></script>
+    <script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
+    <script src="/static/editormd/editormd.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var EditormdView;
 
-      EditormdView = editormd.markdownToHTML("editormd_view", {
+            EditormdView = editormd.markdownToHTML("editormd_view", {
 
 
-            htmlDecode      : "style,script,iframe",  // you can filter tags decode
-            tocm    : true,
-            emoji           : true,
-            taskList        : true,
-            tex             : true,  // 默认不解析
-            flowChart       : true,  // 默认不解析
-            sequenceDiagram : true,  // 默认不解析
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                tocm: true,
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
 
-      });
-  });
-</script>
+            });
+        });
+    </script>
 {% endblock js %}
 
 {% block content %}
-<ul class="list-group">
-    <li class="list-group-item active"> <h5 class="mt-0">{{ article.title }}</h5></li>
-    <li class="list-group-item">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <a href="{% url 'news:edit_page' article.pk %}">修改</a>
-                </div>
-                <div class="col">
-                    栏目@<a href="{% url 'news:column' column.slug %}">{{ article.column }}</a>
-                </div>
-                <div class="col">
-                    作者@<a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
-                </div>
-                <div class="col">
-                    创建@{{ article.pub_date }}
-                </div>
-                <div class="col">
-                    更新@{{ article.update_time }}
+    <div class="col-md-6 column">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item active"><h5 class="mt-0">{{ article.title }}</h5></li>
+                        <li class="list-group-item">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{% url 'news:edit_page' article.pk %}">修改</a>
+                                    </div>
+                                    <div class="col">
+                                        栏目@<a href="{% url 'news:column' column.slug %}">{{ article.column }}</a>
+                                    </div>
+                                    <div class="col">
+                                        作者@<a href="{% url 'news:user_page' article.author %}">{{ article.author }}</a>
+                                    </div>
+                                    <div class="col">
+                                        创建@{{ article.pub_date }}
+                                    </div>
+                                    <div class="col">
+                                        更新@{{ article.update_time }}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </li>
-</ul>
+    </div>
 
-        <div id="editormd_view">
-            <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
-        </div>
+    <div id="editormd_view">
+        <textarea style="display:none;" name="content"> {{ article.content }}</textarea>
+    </div>
 
 {% endblock content %}
