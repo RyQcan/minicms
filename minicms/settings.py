@@ -77,8 +77,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.mysql'),
         'NAME': os.getenv('MYSQL_DB', 'djangodb'),
-        'USER': os.getenv('MYSQL_USER', 'root'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', '13723926068'),
+        'USER': os.getenv('MYSQL_USER', 'nswiki'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'NSwiki2017'),
         'HOST': os.getenv('MYSQL_HOST', 'mysql'),
         'PORT': os.getenv('MYSQL_PORT', '3306'),
     }

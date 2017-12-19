@@ -1,0 +1,54 @@
+python manage.py collectstatic
+
+sudo apt-get install python-dev nginx 
+sudo pip install uwsgi --upgrade
+
+/home/zrq/minicms/script/uwsgi.ini
+
+[uwsgi]
+chdir = /home/zrq/minicms
+wsgi-file = minicms/wsgi.py
+socket = /home/zrq/minicms/script/uwsgi.sock
+touch-reload =  /home/zrq/minicms/script/reload
+processes = 2
+threads = 4
+http = :8004
+static-map= /static=/ /home/zrq/minicms/static
+chmod-socket = 664
+vacuum = true
+daemonize =  /home/zrq/minicms/script/uwsgi.log
+
+
+uwsgi --ini uwsgi.ini
+
+
+sudo vim /etc/nginx/sites-enabled/minicms.conf
+
+
+server {
+    listen      80;
+    charset     utf-8;
+ 
+    client_max_body_size 75M;
+ 
+    location /media  {
+        alias /home/zrq/minicms/media;
+    }
+ 
+    location /static {
+        alias /home/zrq/minicms/static;
+    }
+ 
+    location / {
+        uwsgi_pass  unix:///home/zrq/minicms/script/uwsgi.sock;
+        include     /etc/nginx/uwsgi_params;
+        uwsgi_connect_timeout 30;
+    }
+}
+
+
+
+
+
+
+sudo service nginx restart
