@@ -9,10 +9,12 @@ WORKDIR /app
 ONBUILD RUN apt -y update \
         && apt -y upgrade
 
-RUN pip3 install -U pip \
-    && git clone https://github.com/RyQcan/minicms.git
+RUN pip3 install -U pip
+#    && git clone https://github.com/RyQcan/minicms.git
 
 WORKDIR /app/minicms
+
+ADD ./minicms/requirements.txt ./
 
 RUN pip3 install -r requirements.txt
 

@@ -19,6 +19,8 @@ services:
     ports:
       - "8000:8000"
     restart: on-failure
+    volumes:
+      - ./minicms:/app/minicms
     environment:
       MYSQL_HOST: "mysql"
       MYSQL_PORT: "3306"
