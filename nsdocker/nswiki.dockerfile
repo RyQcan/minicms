@@ -10,15 +10,12 @@ ONBUILD RUN apt -y update \
         && apt -y upgrade
 
 RUN pip3 install -U pip
-#    && git clone https://github.com/RyQcan/minicms.git
 
 WORKDIR /app/minicms
 
 ADD requirements.txt ./
 
 RUN pip3 install -r requirements.txt
-
-ONBUILD RUN git pull
 
 EXPOSE $EXP_PORT
 
