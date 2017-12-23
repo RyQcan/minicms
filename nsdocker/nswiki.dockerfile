@@ -14,7 +14,7 @@ RUN pip3 install -U pip
 
 WORKDIR /app/minicms
 
-ADD ../requirements.txt ./
+ADD minicms/requirements.txt ./
 
 RUN pip3 install -r requirements.txt
 
