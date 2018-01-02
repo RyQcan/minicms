@@ -1,15 +1,5 @@
-version: '3.3'
+version: '3.4'
 services:
-#  mysql:
-#    image:
-#      mysql
-#    restart: on-failure
-#    environment:
-#      MYSQL_ROOT_PASSWORD: "13723926068"
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - mysql_db:/var/lib/mysql
   nswiki:
     build:
       context: .
@@ -22,13 +12,9 @@ services:
     volumes:
       - ./minicms:/app/minicms
     environment:
-#      MYSQL_HOST: "mysql"
       MYSQL_HOST: "172.29.152.233"
       MYSQL_PORT: "3306"
       MYSQL_DB: "djangodb"
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "13723926068"
       LISTEN_ADDR: "0.0.0.0"
-
-#volumes:
-#  mysql_db:
