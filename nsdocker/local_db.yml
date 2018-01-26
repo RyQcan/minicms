@@ -1,11 +1,11 @@
-version: '3.4'
+version: '3.5'
 services:
   mysql:
     image:
       mysql
     restart: on-failure
     environment:
-      MYSQL_ROOT_PASSWORD: "13723926068"
+      MYSQL_ROOT_PASSWORD: "CHANGE_THIS_WITH_YOUR_PASSWD"
     ports:
       - "3306:3306"
     volumes:
@@ -23,11 +23,10 @@ services:
       - ./minicms:/app/minicms
     environment:
       MYSQL_HOST: "mysql"
-#      MYSQL_HOST: "172.29.152.233"
       MYSQL_PORT: "3306"
       MYSQL_DB: "djangodb"
       MYSQL_USER: "root"
-      MYSQL_PASSWORD: "13723926068"
+      MYSQL_PASSWORD: "CHANGE_THIS_WITH_YOUR_PASSWD"
       LISTEN_ADDR: "0.0.0.0"
 
 volumes:
