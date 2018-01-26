@@ -14,8 +14,6 @@ services:
     build:
       context: .
       dockerfile: nswiki.dockerfile
-      args:
-        - EXP_PORT=8000
     ports:
       - "8000:8000"
     restart: on-failure
@@ -28,6 +26,7 @@ services:
       MYSQL_USER: "root"
       MYSQL_PASSWORD: "CHANGE_THIS_WITH_YOUR_PASSWD"
       LISTEN_ADDR: "0.0.0.0"
+      LISTEN_PORT: "8000"
 
 volumes:
   mysql_db:
