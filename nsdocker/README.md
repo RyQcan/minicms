@@ -34,6 +34,12 @@ docker-compose -f 选择的配置文件 stop [servicename]
 docker-compose -f 选择的配置文件 start [servicename]
 ```
 
+##### 重启已经up过的服务
+
+```shell
+docker-compose -f 选择的配置文件 restart [servicename]
+```
+
 ##### 整体销毁
 
 []里的是可选参数，`-v`表示连同映射的volume一起删除，慎用，会删除本地数据库所存储的volume
